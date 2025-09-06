@@ -45,7 +45,7 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
 
-  # #Node Pool
+  # Node Pool
   compute_config = {
     enabled                  = true
     node_pools               = ["general-purpose"]
