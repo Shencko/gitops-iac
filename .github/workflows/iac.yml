@@ -121,7 +121,7 @@ jobs:
         run: kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.2/deploy/static/provider/aws/deploy.yaml
 
 
-      # Empty the ECR 
+      ## Empty the ECR 
       - name: Empty the repository
         run: |
           REPOSITORY_NAME=${{ vars.ECR_REPO }}
