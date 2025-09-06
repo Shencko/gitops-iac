@@ -6,7 +6,7 @@ name: "infra-gitops"
 on:
   push:
     branches:
-      - iac-gitops
+      - gitops-iac
     path:
       - terraform/**
   workflow_dispatch: #Enables manual trigger for destroy job
