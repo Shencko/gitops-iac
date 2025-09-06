@@ -111,27 +111,7 @@ jobs:
           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-      
-      - name: Get kubernetes config
-        id: getconfig
-        if: steps.apply.outcome == 'success'
-        run: aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER }} --region ${{ env.AWS_REGION }}
-      
-      - name: Delete Ingress controller
-        run: kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.2/deploy/static/provider/aws/deploy.yaml
-
-
-      ## Empty the ECR 
-      - name: Empty the repository
-        run: |
-          REPOSITORY_NAME=${{ vars.ECR_REPO }}
-          IMAGES=$(aws ecr list-images --repository-name $REPOSITORY_NAME --query 'imageIds[*]' --output json)
-          if [[ "$IMAGES" != "[]" ]]; then
-            echo "Deleting images from$REPOSITORY_NAME..."
-            aws ecr batch-delete-image --repository-name $REPOSITORY_NAME --image-ids "$IMAGES"
-          else
-            echo "No image found in $REPOSITORY_NAME."
-          fi
+  
       
       - name: Terraform destroy
         id: destroy
