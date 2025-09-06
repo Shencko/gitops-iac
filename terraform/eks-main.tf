@@ -63,7 +63,7 @@ module "eks" {
 }
 
 
-# ECR Repository
+## ECR Repository
 module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "2.0.0"
