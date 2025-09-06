@@ -112,7 +112,7 @@ jobs:
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       
-       - name: Get kubernetes config
+      - name: Get kubernetes config
         id: getconfig
         if: steps.apply.outcome == 'success'
         run: aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER }} --region ${{ env.AWS_REGION }}
